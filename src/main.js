@@ -1,14 +1,7 @@
 import Vue from 'vue'
-
-var data = { status: 'Critical'};
-
-Vue.component('my-cmp',{
-  data: function () {
-    return data;
-  },
-  template: '<p>Server Status: {{ status }} </p>'
-});
+import App from "./App";
 
 new Vue({
-  el: '#app'
+  el: '#app',
+  render: h => h(App)
 })
