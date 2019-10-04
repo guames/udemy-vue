@@ -4,8 +4,11 @@
       <div class="col-xs-12">
         <button @click="selectedComponent='appMainQuote'">Quote</button>
         <button @click="selectedComponent='appMainUser'">User</button>
+        <button @click="selectedComponent='appMainForm'">Form</button>
         <hr>
-        <component :is="selectedComponent"></component>
+        <keep-alive>
+          <component :is="selectedComponent"></component>
+        </keep-alive>
       </div>
     </div>
   </div>
@@ -14,6 +17,7 @@
 <script>
   import MainQuote from "./components/quote/MainQuote";
   import MainUser from "./components/user/MainUser";
+  import MainForm from "./components/form/MainForm";
 
   export default {
     data: function () {
@@ -24,7 +28,8 @@
     },
     components:{
       appMainQuote: MainQuote,
-      appMainUser: MainUser
+      appMainUser: MainUser,
+      appMainForm: MainForm
     }
   }
 </script>
