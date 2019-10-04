@@ -5,6 +5,7 @@
         <button @click="selectedComponent='appMainQuote'">Quote</button>
         <button @click="selectedComponent='appMainUser'">User</button>
         <button @click="selectedComponent='appMainForm'">Form</button>
+        <button @click="selectedComponent='appMainDirective'">Directive</button>
         <hr>
         <keep-alive>
           <component :is="selectedComponent"></component>
@@ -18,6 +19,7 @@
   import MainQuote from "./components/quote/MainQuote";
   import MainUser from "./components/user/MainUser";
   import MainForm from "./components/form/MainForm";
+  import MainDirective from "./components/directive/MainDirective";
 
   export default {
     data: function () {
@@ -29,7 +31,8 @@
     components:{
       appMainQuote: MainQuote,
       appMainUser: MainUser,
-      appMainForm: MainForm
+      appMainForm: MainForm,
+      appMainDirective: MainDirective
     }
   }
 </script>

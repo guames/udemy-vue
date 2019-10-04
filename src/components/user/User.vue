@@ -33,7 +33,7 @@
     data: function() {
       return{
         name : 'Gustavo',
-        age: '32'
+        age: 32
       };
     },
     methods: {
