@@ -2,25 +2,29 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <app-user></app-user>
+        <button @click="selectedComponent='appMainQuote'">Quote</button>
+        <button @click="selectedComponent='appMainUser'">User</button>
+        <hr>
+        <component :is="selectedComponent"></component>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import User from './components/user/User';
+  import MainQuote from "./components/quote/MainQuote";
+  import MainUser from "./components/user/MainUser";
 
   export default {
-    components: {
-      appUser: User
+    data: function () {
+      return{
+        quoteTitle: 'The Quote',
+        selectedComponent: 'app-main-quote'
+      }
+    },
+    components:{
+      appMainQuote: MainQuote,
+      appMainUser: MainUser
     }
   }
 </script>
-
-<style>
-  div.component {
-    border: 1px solid black;
-    padding: 30px;
-  }
-</style>
