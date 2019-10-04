@@ -6,6 +6,7 @@
         <button @click="selectedComponent='appMainUser'">User</button>
         <button @click="selectedComponent='appMainForm'">Form</button>
         <button @click="selectedComponent='appMainDirective'">Directive</button>
+        <button @click="selectedComponent='appMainFilterMixin'">Filter & Mixin</button>
         <hr>
         <keep-alive>
           <component :is="selectedComponent"></component>
@@ -20,6 +21,7 @@
   import MainUser from "./components/user/MainUser";
   import MainForm from "./components/form/MainForm";
   import MainDirective from "./components/directive/MainDirective";
+  import MainFilterMixin from "./components/filters/MainFilterMixin";
 
   export default {
     data: function () {
@@ -32,7 +34,8 @@
       appMainQuote: MainQuote,
       appMainUser: MainUser,
       appMainForm: MainForm,
-      appMainDirective: MainDirective
+      appMainDirective: MainDirective,
+      appMainFilterMixin: MainFilterMixin
     }
   }
 </script>

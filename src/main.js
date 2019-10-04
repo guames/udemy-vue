@@ -21,6 +21,8 @@ Vue.directive('highlight', {
   }
 });
 
+Vue.filter('to-lowercase');
+
 new Vue({
   el: '#app',
   render: h => h(App)
