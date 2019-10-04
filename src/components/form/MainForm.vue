@@ -10,21 +10,24 @@
             <input
               type="text"
               id="email"
-              class="form-control">
+              class="form-control"
+              v-model="userData.email">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
             <input
               type="password"
               id="password"
-              class="form-control">
+              class="form-control"
+              v-model.lazy="userData.password">
           </div>
           <div class="form-group">
             <label for="age">Age</label>
             <input
               type="number"
               id="age"
-              class="form-control">
+              class="form-control"
+              v-model="userData.age">
           </div>
 
         </div>
@@ -36,7 +39,8 @@
           <textarea
             id="message"
             rows="5"
-            class="form-control"></textarea>
+            class="form-control"
+            v-model="userData.message"></textarea>
         </div>
       </div>
       <div class="row">
@@ -46,13 +50,15 @@
               <input
                 type="checkbox"
                 id="sendmail"
-                value="SendMail"> Send Mail
+                value="SendMail"
+                v-model="userData.sendEmail"> Send Mail
             </label>
             <label for="sendInfomail">
               <input
                 type="checkbox"
                 id="sendInfomail"
-                value="SendInfoMail"> Send Infomail
+                value="SendInfoMail"
+                v-model="userData.sendEmail"> Send Infomail
             </label>
           </div>
 
@@ -64,13 +70,15 @@
             <input
               type="radio"
               id="male"
-              value="Male"> Male
+              value="Male"
+              v-model="userData.gender"> Male
           </label>
           <label for="female">
             <input
               type="radio"
               id="female"
-              value="Female"> Female
+              value="Female"
+              v-model="userData.gender"> Female
           </label>
         </div>
       </div>
@@ -79,39 +87,46 @@
           <label for="priority">Priority</label>
           <select
             id="priority"
-            class="form-control">
-            <option></option>
+            class="form-control"
+            v-model="userData.priority">
+            <option v-for="priority in priorities">{{ priority }}</option>
           </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+          <app-switch v-model="userData.dataSwitch"></app-switch>
         </div>
       </div>
       <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
           <button
-            class="btn btn-primary">Submit!
+            class="btn btn-primary"
+            @click.prevent="submitted">Submit!
           </button>
         </div>
       </div>
     </form>
     <hr>
-    <div class="row">
+    <div class="row" v-if="userData.isSubimitted">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4>Your Data</h4>
           </div>
           <div class="panel-body">
-            <p>Mail:</p>
-            <p>Password:</p>
-            <p>Age:</p>
-            <p>Message: </p>
+            <p>Mail: {{ userData.email }}</p>
+            <p>Password: {{ userData.password }}</p>
+            <p>Age: {{ userData.age }}</p>
+            <p style="white-space: pre">Message: {{ userData.message }}</p>
             <p><strong>Send Mail?</strong></p>
             <ul>
-              <li></li>
+              <li v-for="item in userData.sendEmail">{{ item }}</li>
             </ul>
-            <p>Gender:</p>
-            <p>Priority:</p>
-            <p>Switched:</p>
+            <p>Gender: {{ userData.gender }}</p>
+            <p>Priority: {{ userData.priority }}</p>
+            <p>Switched: {{ userData.dataSwitch }}</p>
           </div>
         </div>
       </div>
@@ -120,7 +135,33 @@
 </template>
 
 <script>
+  import Switch from "./Switch";
+
   export default {
+    data(){
+      return{
+        userData:{
+          email:'',
+          password:'',
+          age: 0,
+          sendEmail: [],
+          message:'',
+          gender: 'Male',
+          priority: 'Medium',
+          dataSwitch: true,
+          isSubimitted: false
+        },
+        priorities:['High', 'Medium', 'Low']
+      }
+    },
+    components:{
+      appSwitch: Switch
+    },
+    methods:{
+      submitted(){
+        this.userData.isSubimitted = true;
+      }
+    }
   }
 </script>
 
