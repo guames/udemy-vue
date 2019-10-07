@@ -1,8 +1,15 @@
 import Vue from 'vue'
 import App from "./App";
 import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
+import { routes } from "./routes";
 
 export const eventBus = new Vue();
+
+Vue.use(VueRouter);
+const router = new VueRouter({
+  routes
+});
 
 Vue.use(VueResource);
 
@@ -39,5 +46,6 @@ Vue.filter('toLowercase', function (value) {
 
 new Vue({
   el: '#app',
+  router,
   render: h => h(App)
 })
