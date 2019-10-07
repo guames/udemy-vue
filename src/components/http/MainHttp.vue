@@ -24,6 +24,12 @@
       </div>
       <button class="btn btn-primary" @click="submit">Submit</button>
       <hr>
+    <select
+      id="priority"
+      class="form-control"
+      v-model="node">
+      <option v-for="n in nodes">{{ n }}</option>
+    </select>
     <button class="btn btn-primary" @click="fetchData">Search</button>
     <ul class="list-group">
         <li class="list-group-item" v-for="u in users">{{ u.name }} - {{ u.mail }}</li>
@@ -40,7 +46,9 @@
           mail:''
         },
         users: [],
-        resource: {}
+        resource: {},
+        node: 'users',
+        nodes:['users', 'users-alternative']
       }
     },
     methods:{
@@ -62,7 +70,7 @@
         //     console.log(error);
         //   });
 
-        this.resource.saveAlt({}, this.userData)
+        this.resource.saveData({node: this.node}, this.userData)
           .then(response => {
             this.userData.name ='';
             this.userData.mail = '';
@@ -71,7 +79,19 @@
           });
       },
       fetchData(){
-        this.$http.get('https://vue-udemy-f1ac3.firebaseio.com/users.json')
+
+        // this.$http.get('https://vue-udemy-f1ac3.firebaseio.com/users.json')
+        //   .then(response => {
+        //     return response.json();
+        //   }).then(data => {
+        //     const resultArray = [];
+        //     for(let key in data){
+        //       resultArray.push(data[key]);
+        //     }
+        //     this.users = resultArray;
+        // })
+
+        this.resource.getData({node: this.node})
           .then(response => {
             return response.json();
           }).then(data => {
@@ -81,15 +101,19 @@
             }
             this.users = resultArray;
         })
+
       }
     },
     created() {
       const customActions = {
-        saveAlt: {
-          method: 'POST', url: 'users-alternative.json'
+        saveData: {
+          method: 'POST'
+        },
+        getData: {
+          method: 'GET'
         }
       }
-      this.resource = this.$resource('users.json', {}, customActions);
+      this.resource = this.$resource('{node}.json', {}, customActions);
     }
   }
 </script>
