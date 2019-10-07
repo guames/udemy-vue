@@ -39,14 +39,31 @@
           name: '',
           mail:''
         },
-        users: []
+        users: [],
+        resource: {}
       }
     },
     methods:{
       submit(){
-        this.$http.post('https://vue-udemy-f1ac3.firebaseio.com/users.json', this.userData)
+
+        // this.$http.post('https://vue-udemy-f1ac3.firebaseio.com/users.json', this.userData)
+        //   .then(response => {
+        //     this.userData.name ='';
+        //     this.userData.mail = '';
+        //   }, error => {
+        //     console.log(error);
+        //   });
+
+        // this.resource.save({}, this.userData)
+        //   .then(response => {
+        //     this.userData.name ='';
+        //     this.userData.mail = '';
+        //   }, error => {
+        //     console.log(error);
+        //   });
+
+        this.resource.saveAlt({}, this.userData)
           .then(response => {
-            console.log(response);
             this.userData.name ='';
             this.userData.mail = '';
           }, error => {
@@ -65,6 +82,14 @@
             this.users = resultArray;
         })
       }
+    },
+    created() {
+      const customActions = {
+        saveAlt: {
+          method: 'POST', url: 'users-alternative.json'
+        }
+      }
+      this.resource = this.$resource('users.json', {}, customActions);
     }
   }
 </script>

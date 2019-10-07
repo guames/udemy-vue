@@ -6,6 +6,15 @@ export const eventBus = new Vue();
 
 Vue.use(VueResource);
 
+Vue.http.options.root = 'https://vue-udemy-f1ac3.firebaseio.com/';
+
+Vue.http.interceptors.push((request, next) => {
+  console.log(request);
+  next(response => {
+    console.log(response);
+  })
+});
+
 Vue.directive('highlight', {
   bind(el, binding, vnode){
     // el.style.backgroundColor = 'green';
