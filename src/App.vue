@@ -22,7 +22,7 @@
   import MainUser from "./components/user/MainUser";
   import MainForm from "./components/form/MainForm";
   import MainDirective from "./components/directive/MainDirective";
-  import MainFilterMixin from "./components/filters/MainFilterMixin";
+  import MainFilterMixin from "./components/filter/MainFilterMixin";
   import MainHttp from "./components/http/MainHttp";
 
   export default {
