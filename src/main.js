@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import App from "./App";
+import VueResource from 'vue-resource';
 
 export const eventBus = new Vue();
+
+Vue.use(VueResource);
 
 Vue.directive('highlight', {
   bind(el, binding, vnode){

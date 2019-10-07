@@ -2,11 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <button @click="selectedComponent='appMainQuote'">Quote</button>
-        <button @click="selectedComponent='appMainUser'">User</button>
-        <button @click="selectedComponent='appMainForm'">Form</button>
-        <button @click="selectedComponent='appMainDirective'">Directive</button>
-        <button @click="selectedComponent='appMainFilterMixin'">Filter & Mixin</button>
+        <button class="btn btn-primary" @click="selectedComponent='appMainQuote'">Quote</button>
+        <button class="btn btn-primary" @click="selectedComponent='appMainUser'">User</button>
+        <button class="btn btn-primary" @click="selectedComponent='appMainForm'">Form</button>
+        <button class="btn btn-primary" @click="selectedComponent='appMainDirective'">Directive</button>
+        <button class="btn btn-primary" @click="selectedComponent='appMainFilterMixin'">Filter & Mixin</button>
+        <button class="btn btn-primary" @click="selectedComponent='appMainHttp'">Http</button>
         <hr>
         <keep-alive>
           <component :is="selectedComponent"></component>
@@ -22,6 +23,7 @@
   import MainForm from "./components/form/MainForm";
   import MainDirective from "./components/directive/MainDirective";
   import MainFilterMixin from "./components/filters/MainFilterMixin";
+  import MainHttp from "./components/http/MainHttp";
 
   export default {
     data: function () {
@@ -35,7 +37,8 @@
       appMainUser: MainUser,
       appMainForm: MainForm,
       appMainDirective: MainDirective,
-      appMainFilterMixin: MainFilterMixin
+      appMainFilterMixin: MainFilterMixin,
+      appMainHttp: MainHttp
     }
   }
 </script>
